@@ -1,0 +1,76 @@
+<style>
+
+body{
+background: linear-gradient(to right,#4facfe,#00f2fe);
+min-height:100vh;
+font-family: Arial, sans-serif;
+padding:40px;
+}
+
+.form-box{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+max-width:600px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+input, select{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+margin-top:5px;
+}
+
+button{
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+</style>
+
+
+<div class="form-box">
+
+<h1>Edit Profile</h1>
+
+<form method="POST">
+
+Contact Number<br>
+<input type="text" name="contact" value="{{ student.contact }}"><br><br>
+
+Current City<br>
+<input type="text" name="city" value="{{ student.city }}"><br><br>
+
+Gender<br>
+<select name="gender">
+
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+
+</select><br><br>
+
+Languages Known<br>
+<input type="text" name="languages" value="{{ student.languages }}"><br><br>
+
+<button type="submit">Update Profile</button>
+
+</form>
+
+</div>

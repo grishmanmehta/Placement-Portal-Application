@@ -1,0 +1,87 @@
+<style>
+
+body{
+background: linear-gradient(to right,#4facfe,#00f2fe);
+min-height:100vh;
+font-family: Arial, sans-serif;
+padding:40px;
+}
+
+.form-box{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+max-width:600px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+input, select, textarea{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+margin-top:5px;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+button{
+padding:10px 20px;
+background:#28a745;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#218838;
+}
+
+</style>
+
+
+<div class="form-box">
+
+<h1>Add Experience</h1>
+
+<form method="POST">
+
+Type<br>
+<select name="type">
+<option value="Job">Job</option>
+<option value="Internship">Internship</option>
+</select><br><br>
+
+Designation<br>
+<input type="text" name="designation"><br><br>
+
+Organization<br>
+<input type="text" name="organization"><br><br>
+
+Location<br>
+<input type="text" name="location"><br><br>
+
+Start Date<br>
+<input type="text" name="start_date"><br><br>
+
+End Date<br>
+<input type="text" name="end_date"><br><br>
+
+Description<br>
+<textarea name="description"></textarea><br><br>
+
+<button type="submit">Add Experience</button>
+
+</form>
+
+</div>

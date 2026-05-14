@@ -1,0 +1,131 @@
+<style>
+
+body{
+background: linear-gradient(to right,#4facfe,#00f2fe);
+min-height:100vh;
+font-family: Arial, sans-serif;
+padding:40px;
+}
+
+.profile-box{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+max-width:900px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+h2{
+margin-top:30px;
+margin-bottom:10px;
+}
+
+p{
+background:#f9f9f9;
+padding:10px;
+border-radius:6px;
+}
+
+a{
+display:inline-block;
+margin-bottom:10px;
+color:#007bff;
+text-decoration:none;
+font-weight:bold;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+.section{
+margin-top:20px;
+}
+
+</style>
+
+
+<div class="profile-box">
+
+<h1>Student Profile</h1>
+
+<a href="/student/edit_profile">Edit Profile</a>
+
+
+<h2>Basic Information</h2>
+
+<p>Name: {{ student.name }}</p>
+<p>Email: {{ student.email }}</p>
+<p>Contact: {{ student.contact }}</p>
+<p>City: {{ student.city }}</p>
+<p>Gender: {{ student.gender }}</p>
+<p>Languages: {{ student.languages }}</p>
+
+
+<h2>Education</h2>
+<a href="/add_education">Add Education</a>
+
+{% for edu in education %}
+
+<p>
+{{ edu.level }} - {{ edu.institution }} - {{ edu.stream }} - {{ edu.score }}%
+</p>
+
+{% endfor %}
+
+
+<h2>Experience</h2>
+<a href="/add_experience">Add Experience</a>
+
+{% for exp in experience %}
+
+<p>
+{{ exp.designation }} at {{ exp.organization }}
+</p>
+
+{% endfor %}
+
+
+<h2>Projects</h2>
+
+<a href="/add_project">Add Project</a>
+
+{% for proj in projects %}
+
+<p>
+{{ proj.title }} - {{ proj.project_link }}
+</p>
+
+{% endfor %}
+
+
+<h2>Activities</h2>
+
+<a href="/add_activity">Add Activity</a>
+
+{% for act in activities %}
+
+<p>
+{{ act.activity }}
+</p>
+
+{% endfor %}
+
+
+<h2>Resume</h2>
+
+{% if student.resume %}
+<p>Current Resume: {{ student.resume }}</p>
+{% else %}
+<p>No resume uploaded</p>
+{% endif %}
+
+<a href="/update_resume">Update Resume</a>
+
+</div>

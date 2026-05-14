@@ -1,0 +1,184 @@
+<style>
+
+body{
+background: linear-gradient(to right,#4facfe,#00f2fe);
+min-height:100vh;
+font-family: Arial, sans-serif;
+padding:40px;
+}
+
+.dashboard-box{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+max-width:1100px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+h2{
+margin-top:30px;
+margin-bottom:15px;
+}
+
+.profile-link{
+display:inline-block;
+margin-bottom:15px;
+font-weight:bold;
+color:#007bff;
+text-decoration:none;
+}
+
+.profile-link:hover{
+text-decoration:underline;
+}
+
+ul{
+background:#f9f9f9;
+padding:15px;
+border-radius:8px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th{
+background:#f2f2f2;
+padding:10px;
+}
+
+td{
+padding:10px;
+}
+
+table, th, td{
+border:1px solid #ddd;
+}
+
+tr:nth-child(even){
+background:#f9f9f9;
+}
+
+input[type="text"]{
+padding:8px;
+width:300px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+padding:8px 15px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+.apply-btn{
+color:#28a745;
+font-weight:bold;
+text-decoration:none;
+}
+
+.apply-btn:hover{
+text-decoration:underline;
+}
+
+</style>
+
+
+<div class="dashboard-box">
+
+<h1>Student Dashboard</h1>
+
+<a class="profile-link" href="/student/profile">My Profile</a>
+
+
+<ul>
+
+{% for note in notifications %}
+
+<li>{{ note.message }}</li>
+
+{% endfor %}
+
+</ul>
+
+
+<h2>Available Placement Drives</h2>
+
+<form action="/search_jobs_student" method="GET">
+
+<input type="text" name="query" placeholder="Search job or company">
+
+<button type="submit">Search</button>
+
+</form>
+
+
+<table border="1">
+
+<tr>
+<th>Job Title</th>
+<th>Company</th>
+<th>Salary</th>
+<th>Action</th>
+</tr>
+
+{% for job in jobs %}
+
+<tr>
+
+<td>{{ job.title }}</td>
+<td>{{ job.company.name }}</td>
+<td>{{ job.salary }}</td>
+
+<td>
+<a class="apply-btn" href="/apply_job/{{ job.id }}">Apply</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+<h2>My Applications</h2>
+
+<table border="1">
+
+<tr>
+<th>Job</th>
+<th>Company</th>
+<th>Status</th>
+</tr>
+
+{% for app in applications %}
+
+<tr>
+
+<td>{{ app.job.title }}</td>
+<td>{{ app.job.company.name }}</td>
+<td>{{ app.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>

@@ -1,0 +1,123 @@
+<style>
+
+body{
+background: linear-gradient(to right,#4facfe,#00f2fe);
+min-height:100vh;
+font-family: Arial, sans-serif;
+padding:40px;
+}
+
+.dashboard-box{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+max-width:900px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+h2{
+margin-top:30px;
+margin-bottom:15px;
+}
+
+.create-btn{
+display:inline-block;
+padding:10px 15px;
+background:#28a745;
+color:white;
+border-radius:6px;
+text-decoration:none;
+margin-bottom:20px;
+}
+
+.create-btn:hover{
+background:#218838;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th{
+background:#f2f2f2;
+padding:10px;
+}
+
+td{
+padding:10px;
+}
+
+table, th, td{
+border:1px solid #ddd;
+}
+
+tr:nth-child(even){
+background:#f9f9f9;
+}
+
+a{
+text-decoration:none;
+color:#007bff;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+.delete-link{
+color:red;
+}
+
+</style>
+
+
+
+<div class="dashboard-box">
+
+<h1>Company Dashboard</h1>
+
+<a class="create-btn" href="/create_job">Create Placement Drive</a>
+
+<h2>Your Jobs</h2>
+
+<table>
+
+<tr>
+<th>Title</th>
+<th>Salary</th>
+<th>Deadline</th>
+<th>Applicants</th>
+<th>Action</th>
+</tr>
+
+{% for job in jobs %}
+
+<tr>
+
+<td>{{ job.title }}</td>
+<td>{{ job.salary }}</td>
+<td>{{ job.deadline }}</td>
+
+<td>
+<a href="/view_applications/{{ job.id }}">View Applicants</a>
+</td>
+
+<td>
+<a class="delete-link" href="/delete_job/{{ job.id }}">Delete</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>

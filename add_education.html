@@ -1,0 +1,87 @@
+<style>
+
+body{
+background: linear-gradient(to right,#4facfe,#00f2fe);
+min-height:100vh;
+font-family: Arial, sans-serif;
+padding:40px;
+}
+
+.form-box{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+max-width:600px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+input, select{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+margin-top:5px;
+}
+
+button{
+padding:10px 20px;
+background:#28a745;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#218838;
+}
+
+</style>
+
+
+<div class="form-box">
+
+<h1>Add Education</h1>
+
+<form method="POST">
+
+Education Level<br>
+<select name="level">
+
+<option value="Graduation">Graduation/Post Graduation</option>
+<option value="XII">Senior Secondary (XII)</option>
+<option value="X">Secondary (X)</option>
+<option value="Diploma">Diploma</option>
+<option value="PhD">PhD</option>
+
+</select><br><br>
+
+College / School Name<br>
+<input type="text" name="institution"><br><br>
+
+Start Year<br>
+<input type="text" name="start_year"><br><br>
+
+End Year<br>
+<input type="text" name="end_year"><br><br>
+
+Degree<br>
+<input type="text" name="degree"><br><br>
+
+Stream<br>
+<input type="text" name="stream"><br><br>
+
+Performance Score (%)<br>
+<input type="text" name="score"><br><br>
+
+<button type="submit">Add Education</button>
+
+</form>
+
+</div>

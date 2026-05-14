@@ -1,0 +1,266 @@
+<style>
+
+body{
+background: linear-gradient(to right,#4facfe,#00f2fe);
+min-height:100vh;
+font-family: Arial, sans-serif;
+padding:40px;
+}
+
+.dashboard-box{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+max-width:1200px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+h2{
+margin-top:35px;
+margin-bottom:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+background:white;
+}
+
+th{
+background:#f2f2f2;
+padding:10px;
+}
+
+td{
+padding:10px;
+}
+
+table, th, td{
+border:1px solid #ddd;
+}
+
+tr:nth-child(even){
+background:#f9f9f9;
+}
+
+input[type="text"]{
+padding:8px;
+width:300px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+padding:8px 15px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+a{
+text-decoration:none;
+color:#007bff;
+margin-right:10px;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+</style>
+
+
+<div class="dashboard-box">
+
+<h1>Admin Dashboard</h1>
+
+<h2>System Statistics</h2>
+
+Total Students: {{ total_students }} <br>
+Total Companies: {{ total_companies }} <br>
+Total Placement Drives: {{ total_jobs }} <br>
+Total Applications: {{ total_applications }} <br>
+
+
+<h2>Search Students</h2>
+
+<form action="/search_student" method="get">
+
+<input type="text" name="query" placeholder="Search by name, ID or email">
+
+<button type="submit">Search</button>
+
+</form>
+
+
+<h2>Students</h2>
+
+<table>
+
+<tr>
+<th>Student ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+
+{% for student in students %}
+<tr>
+
+<td>{{ student.id }}</td>
+<td>{{ student.name }}</td>
+<td>{{ student.email }}</td>
+
+<td>
+
+{% if student.active %}
+<a href="/deactivate_student/{{ student.id }}">Deactivate</a>
+{% else %}
+Deactivated
+{% endif %}
+
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+
+<h2>Search Companies</h2>
+
+<form action="/search_company" method="get">
+
+<input type="text" name="query" placeholder="Search by name or industry">
+
+<button type="submit">Search</button>
+
+</form>
+
+
+<h2>Companies</h2>
+
+<table>
+
+<tr>
+<th>Company ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for company in companies %}
+
+<tr>
+
+<td>{{ company.id }}</td>
+<td>{{ company.name }}</td>
+<td>{{ company.email }}</td>
+
+<td>
+{% if company.approved %}
+Approved
+{% else %}
+Pending
+{% endif %}
+</td>
+
+<td>
+
+<a href="/approve_company/{{ company.id }}">Approve</a>
+<a href="/reject_company/{{ company.id }}">Reject</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+<h2>Placement Drives</h2>
+
+<table>
+
+<tr>
+<th>Drive ID</th>
+<th>Job Title</th>
+<th>Company</th>
+<th>Salary</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for job in jobs %}
+
+<tr>
+
+<td>{{ job.id }}</td>
+<td>{{ job.title }}</td>
+<td>{{ job.company.name }}</td>
+<td>{{ job.salary }}</td>
+
+<td>
+{% if job.approved %}
+Approved
+{% else %}
+Pending
+{% endif %}
+</td>
+
+<td>
+
+{% if not job.approved %}
+<a href="/approve_job/{{ job.id }}">Approve</a>
+<a href="/reject_job/{{ job.id }}">Reject</a>
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+<h2>Applications</h2>
+
+<table>
+
+<tr>
+<th>Student</th>
+<th>Job</th>
+<th>Status</th>
+</tr>
+
+{% for application in applications %}
+
+<tr>
+
+<td>{{ application.student.name }}</td>
+<td>{{ application.job.title }}</td>
+<td>{{ application.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
